@@ -365,8 +365,8 @@ extension SettingsView {
             LargeButton(action: { sheet = .favoriteFoods },
                         includeArrow: true,
                         imageView: Image("Favorite Foods Icon").renderingMode(.template).foregroundColor(carbTintColor),
-                        label: "Favorite Foods",
-                        descriptiveText: "Simplify Carb Entry")
+                        label: NSLocalizedString("Favorite Foods", comment: "Label for Favorite Foods icon in Settings"),
+                        descriptiveText: NSLocalizedString("Simplify Carb Entry", comment: "Subheading for Favorite Foods in Settings"))
         }
     }
     
@@ -457,18 +457,8 @@ extension SettingsView {
     
     private var supportSection: some View {
         Section(header: SectionHeader(label: NSLocalizedString("Support", comment: "The title of the support section in settings"))) {
-            Button(action: {
-                self.viewModel.didTapIssueReport()
-            }) {
-                Text("Issue Report", comment: "The title text for the issue report menu item")
-            }
-
             ForEach(pluginMenuItems.filter( { $0.section == .support })) {
                 $0.view
-            }
-
-            NavigationLink(destination: CriticalEventLogExportView(viewModel: viewModel.criticalEventLogExportViewModel)) {
-                Text(NSLocalizedString("Export Critical Event Logs", comment: "The title of the export critical event logs in support"))
             }
         }
     }
